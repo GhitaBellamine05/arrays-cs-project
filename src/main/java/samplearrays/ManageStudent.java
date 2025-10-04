@@ -15,6 +15,7 @@ public class ManageStudent {
         }
         return oldest;
     }
+
     // 3) Count Adult Students (age >= 18)
     public static int countAdults(Student[] students) {
         int adultCounter = 0;
@@ -58,29 +59,29 @@ public class ManageStudent {
     // 6) Sort Students by Grade (descending)
     public static Student[] sortByGradeDesc(Student[] students) {
         // Here we must pay attention to student whose grade attribute is = -1 which means that the grade i snot initialized
-            // Count how many students have grades
-            int gradedCount = 0;
-            for (Student s : students) {
-                if (s.getGrade() != -1) gradedCount++;
-            }
-
-            // Create new array only for students with grades
-            Student[] newArray = new Student[gradedCount];
-            int i = 0;
-            for (Student s : students) {
-                if (s.getGrade() != -1) {
-                    newArray[i++] = s;
-                }
-            }
-
-            Arrays.sort(newArray, new Comparator<Student>(){
-                public int compare(Student s1, Student s2) {
-                    return s2.getGrade() - s1.getGrade();
-                }
-            });
-
-            return newArray;
+        // Count how many students have grades
+        int gradedCount = 0;
+        for (Student s : students) {
+            if (s.getGrade() != -1) gradedCount++;
         }
+
+        // Create new array only for students with grades
+        Student[] newArray = new Student[gradedCount];
+        int i = 0;
+        for (Student s : students) {
+            if (s.getGrade() != -1) {
+                newArray[i++] = s;
+            }
+        }
+
+        Arrays.sort(newArray, new Comparator<Student>() {
+            public int compare(Student s1, Student s2) {
+                return s2.getGrade() - s1.getGrade();
+            }
+        });
+
+        return newArray;
+    }
 
     // 7) Print High Achievers (grade >= 15)
     public static void printHighAchievers(Student[] students) {
@@ -91,6 +92,7 @@ public class ManageStudent {
 
         }
     }
+
     // 8) Update Student Grade by id
     public static boolean updateGrade(Student[] students, int id, int newGrade) {
         for (Student s : students) {
@@ -119,7 +121,7 @@ public class ManageStudent {
     // 10) Expandable Array: return a new array with one more slot and append student
     public static Student[] appendStudent(Student[] students, Student newStudent) {
         Student[] newStudentArray = new Student[students.length + 1];
-        for (int i = 0 ; i < students.length; i++) {
+        for (int i = 0; i < students.length; i++) {
             newStudentArray[i] = students[i];
         }
         newStudentArray[students.length] = newStudent;
@@ -133,10 +135,10 @@ public class ManageStudent {
         // and that's in order to distinguish between the grade 0 and the 0 giving to the non initialized value by default in java
 
         Student[] arr = new Student[5];
-        arr[0] = new Student(1,"Ghita");
+        arr[0] = new Student(1, "Ghita");
         arr[1] = new Student(2, "Ahmed", 18);
-        arr[2] = new Student(3, "Rayan", 19,14);
-        arr[3] = new Student(4, "Samia", 16,18);
+        arr[2] = new Student(3, "Rayan", 19, 14);
+        arr[3] = new Student(4, "Samia", 16, 18);
         arr[4] = new Student(5, "Malak", 17);
 
         // Print all
@@ -147,7 +149,7 @@ public class ManageStudent {
         System.out.println("============================================");
         // 2) Oldest
         Student oldest = findOldest(arr);
-        System.out.println("Oldest Student :"+ oldest);
+        System.out.println("Oldest Student :" + oldest);
 
         // 3) Count adults
         System.out.println("============================================");
@@ -155,17 +157,17 @@ public class ManageStudent {
 
         // 4) Average grade
         System.out.println("============================================");
-        System.out.println("The average is : "+averageGrade(arr));
+        System.out.println("The average is : " + averageGrade(arr));
 
 
         // 5) Find by name
         System.out.println("============================================");
         System.out.println("Is there any student with the name 'Ghita' ?  ");
-        Student specificStudent1 = findStudentByName(arr,"Ghita");
+        Student specificStudent1 = findStudentByName(arr, "Ghita");
         if (specificStudent1 == null) System.out.println("No ");
         else System.out.println("Yes ");
         System.out.println("Is there any student with the name 'Dina' ?  ");
-        Student specificStudent2 = findStudentByName(arr,"Dina");
+        Student specificStudent2 = findStudentByName(arr, "Dina");
         if (specificStudent2 == null) System.out.println("No ");
         else System.out.println("Yes ");
 
@@ -182,19 +184,59 @@ public class ManageStudent {
         printHighAchievers(arr);
 
         // 8) Update grade by id
-        // function
         System.out.println("============================================");
-        System.out.println("\nUpdated id=4? " + updateGrade(arr,4,20));
+        System.out.println("\nUpdated id=4? " + updateGrade(arr, 4, 20));
 
         // 9) Duplicate names
         System.out.println("============================================");
-        System.out.println("Does the students array contains duplicate names ? "+ hasDuplicateNames(arr));
-
+        System.out.println("Does the students array contains duplicate names ? " + hasDuplicateNames(arr));
 
         // 10) Append new student
         System.out.println("============================================");
-        Student[] newarray = appendStudent(arr,new Student(6,"Mustapha",20,18));
+        System.out.println("The new students list after adding a new student ");
+        Student[] newarray = appendStudent(arr, new Student(6, "Mustapha", 20, 18));
         for (Student s : newarray) System.out.println(s);
+
+        System.out.println("============================================");
+        System.out.println("=============School================");
+
+        //11) Create and initialize a 2D array representing the school
+        Student[][] school = new Student[2][3];
+        school[0] = new Student[]{
+                new Student(1, "Ali", 12, 16),
+                new Student(2, "Salma", 13, 12),
+                new Student(3, "Dalia", 12, 10)
+        };
+        school[1] = new Student[]{
+                new Student(7, "Radia", 16, 16),
+                new Student(8, "Samia", 17, 18),
+                new Student(9, "Fatima", 16, 8)
+        };
+        int j = 1;
+        for (Student[] classroom : school) {
+            System.out.println("Class " + j + ":");
+            for (Student student : classroom) {
+                System.out.println("  - " + student.getName());
+            }
+            System.out.println();
+            j++;
+        }
+        // top student
+        int i = 1;
+        for (Student[] classroom : school) {
+            Student topStudent = classroom[0]; // Start with first student
+
+            for (Student student : classroom) {
+                if (student.getGrade() > topStudent.getGrade()) {
+                    topStudent = student;
+                }
+            }
+
+            System.out.println("Top student in Class " + i + ": " +
+                    topStudent.getName() + " (Grade: " + topStudent.getGrade() + ")");
+            i++;
+        }
+
 
 
     }
