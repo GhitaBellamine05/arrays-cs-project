@@ -15,11 +15,14 @@ class Student {
     public Student(int id, String name) {
         this.id = id;
         this.name = name;
+        this.grade = -1;  // I added this to distinguish between student who has grade 0
+                          // and students whose grade is not initialized
         numStudent++;
     }
     public Student(int id, String name, int age) {
         this(id, name);
         this.age = age;
+        this.grade = -1;
     }
     public Student(int id, String name, int age, int grade) {
         this(id, name, age);
