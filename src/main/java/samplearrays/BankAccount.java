@@ -62,7 +62,7 @@ public class BankAccount {
 
         BankAccount john = new BankAccount("John Doe", 100);
 
-        // ----- DO NOT CHANGE -----
+        // ----- DO NOT CHANGE ----
 
         //Testing..
         john.displayBalance();
