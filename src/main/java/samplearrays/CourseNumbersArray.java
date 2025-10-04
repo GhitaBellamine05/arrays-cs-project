@@ -26,6 +26,13 @@ public class CourseNumbersArray {
         }
         System.out.println(arr[arr.length - 1 ]);
     }
+
+    /**
+     *
+     * @param arr : the array
+     * @param course : the course number to search for
+     * @return true if the array contains the course number, otherwise false
+     */
     public static boolean isCourseInArray(int[] arr, int course){
         for( int element : arr){
             if (element == course){
